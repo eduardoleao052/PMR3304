@@ -10,8 +10,8 @@
         <div class="post-header">
             <div>
                 <h1 style="margin:5px 0px 0px 0px;text-align:left;">{{ post.title }}</h1>
-                <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
-
+                <p style="margin:5px 0px 5px 0px;" class="post-body"><b>Categorias</b>: <i>{{ cat.name }}</i></p>
+                <p style="margin:5px 0px 5px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
             </div>
             {% if  user == post.author or user.is_superuser %}
             <div>
@@ -28,7 +28,7 @@
     {% if post.comment_set.all %}
         <section>
             <h1>Comentários</h1>
-            {% for comment in post.comment_set.all %}
+            {% for comment in comments %}
                 <div class="post-header">
                     <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ comment.author }}</b> - <i>{{ comment.date }}</i></p>
                 </div>

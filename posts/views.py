@@ -16,7 +16,11 @@ def secret_post(request):
 
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
-    return render(request, 'posts/post_page.html', {'post': post})
+    post_id = post.id
+    cat_id = PostInCategory.objects.filter(post=post_id).values_list('cat')[0][0]
+    cat = Categories.objects.get(pk=cat_id)
+    comments = Comment.objects.filter(post=post_id).order_by('-date')
+    return render(request, 'posts/post_page.html', {'post': post, 'cat': cat, 'comments': comments})
 
 @login_required(login_url="/users/login")
 def post_new(request):
@@ -58,6 +62,7 @@ def delete_post(request, slug):
 @login_required(login_url="/users/login")
 def create_comment(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    post_id = post_id = post.id
     if request.method == 'POST':
         form = CommentForm(request.POST)
         if form.is_valid():
@@ -70,7 +75,8 @@ def create_comment(request, slug):
             return render(request, 'posts/post_page.html', {'post': post})
     else:
         form = CommentForm()
-    return render(request, 'posts/comment.html', {'form': form, 'post': post})
+    comments = Comment.objects.filter(post=post_id).order_by('-date')
+    return render(request, 'posts/comment.html', {'form': form, 'post': post, 'comments': comments})
 
 def categories_list(request):
     cats = Categories.objects.all()
