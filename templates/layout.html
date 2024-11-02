@@ -17,6 +17,7 @@
     <h1>My Django App</h1>
         <nav>
             <a href="/">Home</a>
+            <a href="{% url 'posts:post-new' %}">New Post</a>
             <a href="{% url 'posts:list' %}">Posts</a>
         </nav>
     </header>
