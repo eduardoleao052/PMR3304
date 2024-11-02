@@ -1,0 +1,268 @@
+:root {
+    --color-1: #912445;
+    --color-1-hover: #7e1d3a;
+    --color-1-active: #711d36;
+    --color-2: #7399C6;
+    --color-2-hover: #6a8eba;
+    --color-2-active: #5d7fa9;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+@font-face {
+    font-family: "Goldman-Sans";
+    src: url("GSans.ttf");
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    padding: 30px;
+    height: fit-content;
+}
+header {
+    background-color: var(--color-1);
+    color: white;
+    padding: 10px 100px;
+    font-family: "Goldman-Sans";
+}
+header h1 {
+    margin-top: 3px;
+    font-size: 3rem;
+}
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 11px;
+}
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+nav a:hover {
+    color: rgb(197, 197, 197);
+}
+
+main {
+    padding: 30px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    background-color: rgb(207, 207, 207);
+    padding: 6px 100px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+h1, p {
+    text-align: center;
+}
+
+section {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.232);
+    border-radius: 10px;
+    padding: 25px 50px;
+    margin: auto;
+    margin-bottom: 55px;
+    width: 85%; 
+}
+section h1 {
+    margin-bottom: 23px;
+}
+section .post-body {
+    margin-top: 20px;
+    text-align: justify;
+}
+section .post-details {
+    margin-top: 13px;
+    text-align: right;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.232);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 15px auto;
+    width: 50%;
+}
+.post:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+.post p {
+    text-align: left;
+    margin-top: 5px;
+}
+
+main a {
+    text-decoration: none;
+    color: black;
+}
+
+.back_button, .edit-button {
+    padding: 7px 13px;
+    background-color: var(--color-1);
+    color: whitesmoke;
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 20px;
+}
+.back_button a {
+    color: whitesmoke;
+
+}
+
+.back_button:hover, .edit-button:hover {
+    background-color: var(--color-1-hover);
+}
+
+.back_button:active, .edit-button:active {
+    background-color: var(--color-1-active);
+}
+.banner {
+    display: block;
+    width: 40%;
+    margin: auto;
+    border-radius: 20px;
+}
+
+.form-div {
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    width: 70%;
+    gap: 30px;
+    margin-top: 30px;
+    max-height: 73vh;
+}
+
+.form-img {
+    width: 40%;
+    border-radius: 30px;
+}
+
+.form-with-validation {
+    border-radius: 25px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.042);
+    border: 1px solid rgb(213, 213, 213);
+    max-height: 77vh;
+    padding: 25px;
+}
+
+.form-with-validation li {
+    list-style-type: none;
+    color: rgb(157, 157, 157);
+}
+.helptext {
+    color: rgb(157, 157, 157);
+}
+
+.form-with-validation label {
+    font-family: "Goldman-Sans";
+    font-weight: 800;
+    font-size: 2rem;
+    display: block;
+}
+
+.form-with-validation input, textarea {
+    margin: 10px 0px;
+    border: 1px solid rgb(215, 215, 215);
+    background-color: white;
+    display: block;
+    padding: 5px;
+    width: 250px;
+}
+
+.form-with-validation input:focus,textarea:focus {
+    outline-width: 1px;
+    outline-color: var(--color-1);
+    outline-style: solid;
+}
+.errorlist li {
+    color: rgb(209, 0, 0);
+}
+
+.form-with-validation button, .submit-comment {
+    padding: 7px 13px;
+    background-color: var(--color-1);
+    color: whitesmoke;
+    border-radius: 7px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-1);
+    margin-top: 10px;
+}
+.form-with-validation button:hover, .submit-comment:hover {
+    background-color: var(--color-1-hover);
+}
+
+.form-with-validation button:active, .submit-comment:active {
+    background-color: var(--color-1-active);
+}
+
+.logout_button {
+    color: white;
+    border: none;
+    background-color: transparent;
+    font-family: "Goldman-sans";
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+.new-post-div {
+    width: 50%;
+    margin: auto;
+    margin-top: 15px;
+    height: 100%;
+}
+
+#id_private, #id_banner, #id_title, #id_body, #id_slug {
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+}
+#id_private {
+    width: 3%;
+}
+#id_private:focus {
+    outline-width: 0;
+}
+
+.post-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#comment-button {
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+#delete-button {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+#delete-form {
+    text-align: center;
+    width: 45%;
+    margin: auto;
+}

@@ -17,8 +17,19 @@
     <h1>My Django App</h1>
         <nav>
             <a href="/">Home</a>
-            <a href="{% url 'posts:post-new' %}">New Post</a>
             <a href="{% url 'posts:list' %}">Posts</a>
+            <a href="{% url 'posts:categories' %}">Categories</a>
+            {% if user.is_authenticated %}
+            <a href="{% url 'posts:post-new' %}">New Post</a>
+            <form class="logout" action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button class="logout_button" title="User Logout">Logout</button>
+            </form>
+            {% else %}
+            <a href="{% url 'users:login' %}">Login</a>
+            <a href="{% url 'users:register' %}">Register</a>
+            {% endif %}
+            
         </nav>
     </header>
     <main>

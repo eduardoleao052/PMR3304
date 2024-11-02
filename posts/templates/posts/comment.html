@@ -1,0 +1,40 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <a href="{% url 'posts:page' post.slug %}"><button class="back_button">Back</button></a>
+    <section> 
+            <div class="post-header">
+                <div>
+                    <h1 style="margin:5px 0px 0px 0px;">{{ post.title }}</h1>
+                    <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
+    
+                </div>
+                {% if user == post.author or user.is_superuser %}
+                    <div>
+                        <a href="{% url 'posts:update' post.slug %}"><button class="edit-button">Edit</button></a>
+                        <a href="{% url 'posts:delete' post.slug %}"><button class="edit-button">Delete</button></a>
+                    </div>
+                {% endif %}
+            </div>
+            <img src="{{ post.banner.url }}" alt="{{ post.title }}" class="banner">
+            <p class="post-body">{{ post.body }}</p>
+        <form action="{% url 'posts:comment' post.slug %}" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="submit-comment" type="submit">Submit Comment</button>
+        </form>
+    </section>
+    {% if post.comment_set.all %}
+        <section>
+            <h1>Comentários</h1>
+            {% for comment in post.comment_set.all %}
+                <div class="post-header">
+                    <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ comment.author }}</b> - <i>{{ comment.date }}</i></p>
+                </div>
+                <p style="margin:none;text-align:left;font-style:none;">{{ comment.body }}</p>
+            {% endfor %}
+        </section>
+    {% endif %}
+    
+
+{% endblock content %}

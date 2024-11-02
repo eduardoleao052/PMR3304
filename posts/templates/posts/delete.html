@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <a href="{% url 'posts:page' post.slug %}"><button class="back_button">Back</button></a>
+    {% if  user == post.author or user.is_superuser %}
+        <form class="form-with-validation" id="delete-form" action="{% url 'posts:delete' post.slug %}" method="post">
+            <label>Delete Post {{ post.title }} </label>
+            {% csrf_token %}
+            <p style="margin: 40px 0px;">
+                Você tem certeza que deseja apagar o post <b>{{post.title}}</b>?
+            </p>
+            <button class="submit" type="submit" id="delete-button">Apagar</button>
+        </form>
+    {% else %}
+        <form class="form-with-validation" action="{% url 'posts:delete' post.slug %}" method="post">
+            <label>Delete Post {{ post.title }} </label>
+            {% csrf_token %}
+            <p>
+                Você não tem permissão para apagar o post "{{ post.title }}"
+            </p>
+        </form>
+    {% endif %}
+    
+{% endblock content %}

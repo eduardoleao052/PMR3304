@@ -13,10 +13,29 @@
                 <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
 
             </div>
+            {% if  user == post.author or user.is_superuser %}
+            <div>
+                <a href="{% url 'posts:update' post.slug %}"><button class="edit-button">Edit</button></a>
+                <a href="{% url 'posts:delete' post.slug %}"><button class="edit-button">Delete</button></a>
+            </div>
+            {% endif %}
         </div>
         <img src="{{ post.banner.url }}" alt="{{ post.title }}" class="banner">
         <p class="post-body">{{ post.body }}</p>
+        <a href="{% url 'posts:comment' post.slug %}"><button style="margin-top:20px" class="edit-button" id="comment-button">Comment</button></a>
 
     </section>
+    {% if post.comment_set.all %}
+        <section>
+            <h1>Comentários</h1>
+            {% for comment in post.comment_set.all %}
+                <div class="post-header">
+                    <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ comment.author }}</b> - <i>{{ comment.date }}</i></p>
+                </div>
+                <p style="margin:none;text-align:left;">{{ comment.body }}</p>
+                <hr style="border: 0.5px solid #c7c7c7; width: 100%; margin: 15px 0px 10px 0px;">
+            {% endfor %}
+        </section>
+    {% endif %}
 
 {% endblock content %}

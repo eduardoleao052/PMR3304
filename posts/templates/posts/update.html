@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Update Post
+{% endblock title %}
+
+{% block content %}
+    <a href="{% url 'posts:page' post.slug %}"><button class="back_button">Back</button></a>
+    <form class="form-with-validation" method="post" action="{% url 'posts:update' post.slug %}">
+        {% csrf_token %}
+        <label>Update Post {{ post.title }} </label>
+        <p>
+            <label for="id_title">Title:</label>
+            <input type="" name="title" id="id_title" value="{{ post.title }}" />
+        </p>
+        <p>
+            <label for="id_body">Body:</label>
+            <textarea
+            style="height: 200px;"
+            name="body"
+            id="id_body"
+            value="{{ post.body }}">
+{{ post.body }}
+            </textarea>
+        </p>
+        <button class="submit" type="submit">Save Changes</button>
+    </form>
+{% endblock content %}

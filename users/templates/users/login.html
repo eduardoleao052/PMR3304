@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Log a User In
+{% endblock title %}
+
+{% block content %}
+    <div class="form-div">
+        <img class="form-img" src="../../media/corporate.png" alt="image">
+        <form class="form-with-validation" action="{% url 'users:login' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            {% if request.GET.next %}
+                <input type="hidden" name="next" value="{{ request.GET.next }}">
+            {% endif %}
+            <button type="submit">Login</button>
+            <a href="{% url 'users:register' %}"><button type="button" class="back_button">Register</button></a>
+        </form>
+    </div>
+{% endblock content %}

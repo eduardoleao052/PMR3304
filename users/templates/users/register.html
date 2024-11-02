@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Register a User
+{% endblock title %}
+
+{% block content %}
+    <div class="form-div">
+        <img class="form-img" src="../../media/corporate.png" alt="image">
+        <form class="form-with-validation" action="{% url 'users:register' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button>Submit</button>
+        </form>
+    </div>
+{% endblock content %}

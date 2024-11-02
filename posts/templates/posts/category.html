@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Posts
+{% endblock title %}
+
+{% block content %}
+        <h1>Posts sobre {{ cat }}</h1>
+        {% for post in posts %}
+            {% if not post.private or user.is_authenticated%}
+                <a href="{% url 'posts:page' slug=post.slug %}">
+                    <article class="post">
+                        <h2>{{ post.title }}</h2>
+                        <p>{{ post.body }}</p>
+                        <p><i>{{ post.date }}</i> by {{ post.author }}</p>
+                    </article>
+                </a>
+            {% endif %}
+        {% endfor %}
+{% endblock content %}
