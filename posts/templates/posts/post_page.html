@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    {{ post.title }}
+{% endblock title %}
+
+{% block content %}
+    <a href="{% url 'posts:list' %}"><button class="back_button">Back</button></a>
+    <section> 
+        <div class="post-header">
+            <div>
+                <h1 style="margin:5px 0px 0px 0px;text-align:left;">{{ post.title }}</h1>
+                <p style="margin:5px 0px 12px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
+
+            </div>
+        </div>
+        <img src="{{ post.banner.url }}" alt="{{ post.title }}" class="banner">
+        <p class="post-body">{{ post.body }}</p>
+        <a href="{% url 'posts:comment' post.slug %}"><button style="margin-top:20px" class="edit-button" id="comment-button">Comment</button></a>
+
+    </section>
+
+{% endblock content %}
