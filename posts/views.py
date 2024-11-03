@@ -72,7 +72,7 @@ def create_comment(request, slug):
                               body=comment_body,
                               post=post)
             comment.save()
-            return render(request, 'posts/post_page.html', {'post': post})
+            return redirect("posts:page", slug=slug)
     else:
         form = CommentForm()
     comments = Comment.objects.filter(post=post_id).order_by('-date')
