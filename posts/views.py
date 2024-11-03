@@ -17,10 +17,9 @@ def secret_post(request):
 def post_page(request, slug):
     post = Post.objects.get(slug=slug)
     post_id = post.id
-    cat_id = PostInCategory.objects.filter(post=post_id).values_list('cat')[0][0]
-    cat = Categories.objects.get(pk=cat_id)
+    cats = post.categories.all()
     comments = Comment.objects.filter(post=post_id).order_by('-date')
-    return render(request, 'posts/post_page.html', {'post': post, 'cat': cat, 'comments': comments})
+    return render(request, 'posts/post_page.html', {'post': post, 'cats': cats, 'comments': comments})
 
 @login_required(login_url="/users/login")
 def post_new(request):
@@ -30,6 +29,8 @@ def post_new(request):
             new_post = form.save(commit=False)
             new_post.author = request.user
             new_post.slug = int(Post.objects.values_list('slug').order_by('-slug')[0][0]) + 1
+            new_post.save()
+            new_post.categories.set(form.cleaned_data.get("categories"))
             new_post.save()
             return redirect("posts:list")
     else: 
@@ -45,7 +46,7 @@ def update_post(request, slug):
         post.date = post.date
         post.body = request.POST['body']
         post.save()
-        return render(request, 'posts/post_page.html', {'post': post})
+        return redirect("posts:page", slug=slug)
 
     return render(request, 'posts/update.html', {'post': post})
 
@@ -84,10 +85,6 @@ def categories_list(request):
 
 
 def category(request, cat_id):
-    post_ids = PostInCategory.objects.filter(cat=cat_id).values_list('post')
+    posts = Post.objects.filter(categories=cat_id)
     cat = Categories.objects.get(pk=cat_id)
-    posts = []
-    for id in post_ids:
-        posts.append(Post.objects.filter(pk=id[0])[0])
     return render(request, 'posts/category.html', {'posts': posts, 'cat': cat})
-    pass

@@ -175,11 +175,28 @@ main a {
     color: rgb(157, 157, 157);
 }
 
-.form-with-validation label {
+.form-with-validation label, legend {
     font-family: "Goldman-Sans";
     font-weight: 800;
     font-size: 2rem;
     display: block;
+}
+
+#id_categories label {
+    font-size: 1rem;
+    display: inline-block;
+}
+#id_categories_0, #id_categories_1, #id_categories_2 {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    width: 30px;
+}
+#id_categories_0:focus, #id_categories_1:focus, #id_categories_2:focus {
+    outline-width: 0;
+}
+fieldset {
+    border: none;
 }
 
 .form-with-validation input, textarea {

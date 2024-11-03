@@ -10,7 +10,7 @@
         <div class="post-header">
             <div>
                 <h1 style="margin:5px 0px 0px 0px;text-align:left;">{{ post.title }}</h1>
-                <p style="margin:5px 0px 5px 0px;" class="post-body"><b>Categorias</b>: <i>{{ cat.name }}</i></p>
+                <p style="margin:5px 0px 5px 0px;" class="post-body"><b>Categorias</b>: <i>{% for cat in cats %}{{ cat }} {% endfor %}</i></p>
                 <p style="margin:5px 0px 5px 0px;" class="post-body"><b>{{ post.author }}</b> - <i>{{ post.date }}</i></p>
             </div>
             {% if  user == post.author or user.is_superuser %}
