@@ -17,4 +17,10 @@
                 </a>
             {% endif %}
         {% endfor %}
+        {% if not user.is_authenticated%}
+        <div style="text-align: center;">
+            <p style="margin-top: 50px; margin-right: 10px; display: inline-block;"><b>Login</b> to view more posts</p>
+            <a href="{% url 'users:login' %}"><button class="edit-button">Login</button></a>
+        </div>
+        {% endif %}
 {% endblock content %}
